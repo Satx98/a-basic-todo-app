@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 
+import Store from '../store/todo-state';
+
 const InputField = (props) => {
   const [todoInputValue, setTodoInputValue] = useState("");
+
+  const addTodo = Store.useStoreActions((actions) => actions.addTodo);
 
   return (
     <>
@@ -10,7 +14,7 @@ const InputField = (props) => {
         value={todoInputValue}
         onChange={(e) => setTodoInputValue(e.target.value)}
       />
-      <button onClick={() => props.clicked(todoInputValue)}>Add Todo</button>
+      <button onClick={() => addTodo(todoInputValue)}>Add Todo</button>
     </>
   );
 };
